@@ -1,3 +1,11 @@
 <p>feature-one works!</p>
 
-<app-status-flow-radio-button></app-status-flow-radio-button>
+<div class="status-button">
+    <app-status-flow-radio-button
+        [allowedValuesTransitions]="statusesTransitions"
+        [values]="statuses"
+        [value]="initialValue"
+        [disabled]="false"
+        (onClick)="changeChargingDetailsStatus($event)">
+    </app-status-flow-radio-button>
+</div>

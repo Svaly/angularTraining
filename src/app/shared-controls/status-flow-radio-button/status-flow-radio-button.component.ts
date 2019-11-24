@@ -14,8 +14,9 @@ export class StatusFlowRadioButtonComponent extends Component implements OnChang
   @Input() public value: string | number | boolean;
   @Input() public disabled: boolean;
   @Output() public onClick: EventEmitter<string | number | boolean>;
- 
+
   private changeDetector: ChangeDetectorRef;
+  public allowedValues: Array<RadioButtonItem>;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -30,10 +31,31 @@ export class StatusFlowRadioButtonComponent extends Component implements OnChang
 
   public ngOnInit(): void {
     this.detachChangeDetector();
+
+    if (this.value) {
+      this.allowedValues = this.getAllowedStatuses(this.value);
+      this.detectChanges();
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.value && changes.value.currentValue !== null && changes.value.currentValue !== undefined) {
+      this.allowedValues = this.getAllowedStatuses(this.value);
+    }
+
     this.detectChanges();
+  }
+
+  public clicked(selectedItem: RadioButtonItem): void {
+    if (this.value === selectedItem.value) {
+      return;
+    }
+    this.onClick.next(selectedItem.value);
+  }
+
+  private getAllowedStatuses(value: string | number | boolean): Array<RadioButtonItem> {
+    const allowedTransitions = this.allowedValuesTransitions.getAllowedTransitions(value);
+    return this.values.filter(c => allowedTransitions.includes(c.value)).sort((a, b) => (a.value > b.value) ? 1 : -1);
   }
 
   private detachChangeDetector(): void {

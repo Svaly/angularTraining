@@ -1,1 +1,10 @@
-<p>status-flow-radio-button works!</p>
+<div>
+    <button 
+        *ngFor="let item of allowedValues"
+        class="control" 
+        (click)="clicked(item)" 
+        [class.active]="item.value === value"
+        [disabled]="disabled">
+        {{item.displayText}}
+    </button>
+</div>

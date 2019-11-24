@@ -12,7 +12,13 @@ export class AllowedValuesTransitionsGraphNode {
         this.value = value;
     }
 
-    public addNeighbor(node: AllowedValuesTransitionsGraphNode): void {
-        this.neighborsSet.push(node);
+    public addNeighbor(newNeighbor: AllowedValuesTransitionsGraphNode): void {
+        if (!this.alreadyHasNeighbor(newNeighbor)) {
+            this.neighborsSet.push(newNeighbor);
+        }
+    }
+
+    private alreadyHasNeighbor(newNeighbor: AllowedValuesTransitionsGraphNode): boolean {
+        return this.neighborsSet.find(c => c.value === newNeighbor.value) !== undefined;
     }
 }

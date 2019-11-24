@@ -27,7 +27,6 @@ describe('RadioButtonAllowedValuesTransitionsGraph', () => {
     const instance = new RadioButtonAllowedValuesTransitionsGraph();
     instance.addAllowedValueTransition('a', 'b');
     instance.addAllowedValueTransition('a', 'b');
-console.log(instance.getAllowedTransitions('a'));
     expect(instance.getAllowedTransitions('a').length).toBe(2);
     expect(instance.getAllowedTransitions('b').length).toBe(1);
   });

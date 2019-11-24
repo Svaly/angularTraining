@@ -1,0 +1,62 @@
+$orange:  #ff6200 !default;
+$gray-500: #adb5bd !default;
+$white:    #fff !default;
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+div {
+  display: flex;
+
+  :hover {
+    color: $orange;
+    border-color: $orange;
+  }
+
+  :first-child {
+    border-radius: 0.25em 0 0 0.25em;
+  }
+
+  :last-child {
+    border-radius: 0 0.25em 0.25em 0;
+  }
+
+  :only-child {
+    border-radius: 0.25em;
+  }
+
+  .active {
+    color: $white;
+    background-color: $orange;
+    border-color: $orange;
+
+    :hover {
+      color: $white;
+    }
+  }
+
+  :disabled {
+    color: inherit;
+    background-color: $gray-500;
+    border-color: $gray-500;
+  }
+
+  button {
+    width: fit-content;
+    border-radius: 0;
+    border: 1px solid $gray-500;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}

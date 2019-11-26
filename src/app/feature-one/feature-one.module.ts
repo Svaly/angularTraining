@@ -1,7 +1,9 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatureOneComponent } from './feature-one.component';
 import { SharedControlsModule } from '../shared-controls/shared-controls.module';
+import { FeatureOneDocumentService } from './feature-one-document.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,6 +12,10 @@ import { SharedControlsModule } from '../shared-controls/shared-controls.module'
   imports: [
     CommonModule,
     SharedControlsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    FeatureOneDocumentService
   ]
 })
 export class FeatureOneModule { }

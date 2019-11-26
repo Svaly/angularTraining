@@ -3,9 +3,9 @@
 <div class="status-button">
     <app-status-flow-radio-button
         [allowedValuesTransitions]="statusesTransitions"
-        [values]="statuses"
-        [value]="initialValue"
+        [allowedValues]="statuses"
+        [value]="valueOfStatus"
         [disabled]="false"
-        (onClick)="changeChargingDetailsStatus($event)">
+        (onClick)="changeStatus($event)">
     </app-status-flow-radio-button>
 </div>

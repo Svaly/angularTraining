@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Status } from './status.enum';
 import { RadioButtonItem } from 'app/shared-controls/status-flow-radio-button/radio-button-item';
+import { FeatureOneDocumentService } from './feature-one-document.service';
 import { RadioButtonAllowedValuesTransitionsGraph } from 'app/shared-controls/status-flow-radio-button/radio-button-allowed-values-transitions-graph';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-feature-one',
@@ -10,7 +12,11 @@ import { RadioButtonAllowedValuesTransitionsGraph } from 'app/shared-controls/st
 })
 export class FeatureOneComponent {
 
-  public initialValue: string | number | boolean = Status.Approved;
+  public valueOfStatus: string | number | boolean = Status.Approved;
+
+  constructor(private featureOneDocumentService: FeatureOneDocumentService) {
+    this.valueOfStatus = Status.Approved;
+  }
 
   public statuses: Array<RadioButtonItem> = [
     new RadioButtonItem('Approved', Status.Approved),
@@ -36,8 +42,16 @@ export class FeatureOneComponent {
     { from: Status.Archived, to: Status.PendingApproval },
   ]);
 
-  public changeChargingDetailsStatus(status: string | number | boolean): void {
-    console.log(status);
-    this.initialValue = status;
+  public changeStatus(newStatus: number): void {
+    console.log(newStatus);
+
+    this.featureOneDocumentService.changeDocumentStatus('id', newStatus)
+      .pipe(first())
+      .subscribe(
+        (success) => {  this.valueOfStatus = newStatus; },
+        (error) => { },
+      );
   }
+
+
 }

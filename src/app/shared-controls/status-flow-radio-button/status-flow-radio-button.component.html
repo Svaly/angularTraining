@@ -1,6 +1,6 @@
 <div>
     <button 
-        *ngFor="let item of allowedValues"
+        *ngFor="let item of currentValuesToDisplay"
         class="control" 
         (click)="clicked(item)" 
         [class.active]="item.value === value"

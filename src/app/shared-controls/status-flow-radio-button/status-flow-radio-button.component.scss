@@ -1,0 +1,13 @@
+$orange: #ff6200;
+$gray: #adb5bd;
+$white: #fff;
+
+div {
+
+    .active {
+        color: $white;
+        background-color: $orange;
+        border-color: $orange;
+    }
+
+}

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'from-scratch';
+  public title = 'Witaj nieznajomy';
+
+  public getText(a: number, b: number ): string {
+    return `suma to ${a + b}`;
+  }
 }
